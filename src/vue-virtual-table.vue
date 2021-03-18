@@ -293,7 +293,7 @@
                 >
                   <i
                     class="sort-ascending"
-                    @click="handleClickSort(item.prop, 'asc')"
+                    @click="handleClickSort(item, 'asc')"
                     :class="{
                       selected:
                         sortParam.col === item.prop &&
@@ -302,7 +302,7 @@
                   ></i>
                   <i
                     class="sort-descending"
-                    @click="handleClickSort(item.prop, 'desc')"
+                    @click="handleClickSort(item, 'desc')"
                     :class="{
                       selected:
                         sortParam.col === item.prop &&
@@ -1178,7 +1178,7 @@ export default {
       if (index != undefined && self.configTemp[index]) {
         self.$set(self.configTemp[index], "filterVisible", false);
       }
-      self.handleClickSort(self.sortParam.col, self.sortParam.direction, true);
+      self.handleClickSort(self.sortParam, self.sortParam.direction, true);
       self.refreshSummary();
     },
     handleClickReverseFilter(index) {
@@ -1224,19 +1224,20 @@ export default {
       this.handleClickConfirmFilter(index);
     },
     handleChangeFilter(val) {},
-    handleClickSort(val, direction, forse) {
+    handleClickSort(row, direction, forse) {
       let self = this;
+      
       if (
-        self.sortParam.col === val &&
+        self.sortParam.col === row.prop &&
         self.sortParam.direction === direction &&
         !forse
       ) {
         return;
       }
-      if (!self.dataTemp[0] || !val) {
+      if (!self.dataTemp[0] || !row.prop) {
         return;
       }
-      self.sortParam.col = val;
+      self.sortParam.col = row.prop;
       self.sortParam.direction = direction;
       let isNumber = false;
       self.dataTemp.some((v, i) => {
