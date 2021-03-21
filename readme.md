@@ -13,13 +13,13 @@ Vue table component with virtual dom and easy api.
 # Installation
 
 ```
-yarn add vue-virtual-table
+yarn add vue-virtual-tables
 ```
 
 or
 
 ```
-npm install --save vue-virtual-table
+npm install --save vue-virtual-tables
 ```
 
 # Usage
